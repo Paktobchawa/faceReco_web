@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload to Firebase Storage</title>
+    <link rel="stylesheet"  href="{{ url_for ('static', filename='adjustdataStyle.css') }}">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/g/filesaver.js"></script> <!-- เพิ่มไลบรารี FileSaver.js -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCBYTdBBcLX7POJumyNsf_ugEja-ZVKwl8",
+            authDomain: "facerecognition-41dc8.firebaseapp.com",
+            databaseURL: "https://facerecognition-41dc8-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "facerecognition-41dc8",
+            storageBucket: "facerecognition-41dc8.appspot.com",
+            messagingSenderId: "952650759936",
+            appId: "1:952650759936:web:fad10eab165c6b1e0f3de5",
+            measurementId: "G-8Q0TB19EV5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+</head>
+<body>
+    <h1>
+       Upload Files and Display Data
+    </h1>
+    <div class="container" id="UploadContainer">
+        <div class="upload-section">
+            <form name="uploadForm" enctype="multipart/form-data">
+                <h2>Upload Files</h2>
+                Select files to upload:
+                <input type="file" id="fileInput" multiple>
+                <input type="submit" value="Upload Files" onclick="uploadFiles()" id="uploadButton">
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="ExportContainer">
+        <div class="download-section">
+            <h2>Display Data</h2>
+            <form method="POST" action="/display">
+                <input type="submit" value="Display Data"  id="exportButton">
+        </div>
+    </div>
+
+    <script>
+        function uploadFiles() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const storage = firebase.storage();
+                const storageRef = storage.ref('uploads/' + file.name);
+                const uploadTask = storageRef.put(file);
+
+                uploadTask.then((snapshot) => {
+                    console.log('File uploaded:', snapshot.metadata.fullPath);
+                    storageRef.getDownloadURL().then(function (url) {
+                        const uploadedImage = document.getElementById('uploadedImage');
+                        uploadedImage.src = url;
+                    });
+                }).catch((error) => {
+                    console.error('Error uploading file:', error);
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>

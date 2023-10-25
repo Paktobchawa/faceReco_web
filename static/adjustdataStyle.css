@@ -1,0 +1,93 @@
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #ff4800;
+    border: 2px solid #ff4800;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+#exportButton {
+    top: 150px;
+    left: 110px;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    width: 350px;
+    height: 200px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    position: absolute;
+}
+
+#UploadContainer {
+    top: 30%;
+    left: 22%;
+
+}
+
+#ExportContainer {
+    top: 30%;
+    left: 50%;
+
+}
+
+.upload-section, .download-section {
+    flex: 1;
+}
+
+input[type="button"] {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #ff4800;
+    border: 2px solid #ff4800;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+#uploadButton {
+    top: 150px;
+    left: 140px;
+}
+
+input[type="file"], input[type="button"] {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="button"]:hover {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color:#ff6326;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 45px;
+    text-shadow: 2px 2px 1px rgba(106, 106, 106, 0.5);
+}
+
+h2 {
+    color:#ff6326;
+    text-shadow: 1px 1px 1px rgba(84, 84, 84, 0.5);
+}

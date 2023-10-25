@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Data Table</title>
+<style>
+
+</style>
+</head>
+<body>
+    <h1> Firebase Data </h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Degree</th>
+            <th>Major</th>
+            <th>Year</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Rate Attendance</th>
+            <th>Total Attendance</th>
+        </tr>
+        {% for key, value in data.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value.name }}</td>
+                <td>{{ value.degree }}</td>
+                <td>{{ value.major }}</td>
+                <td>{{ value.year }}</td>
+                <td>{{ value.day }}</td>
+                <td>{{ value['check the time'] }}</td>
+                <td>{{ value['rate attendance'] }}</td>
+                <td>{{ value['total attendance']}}</td>
+                
+                <!-- Adjust the property names to match your Firebase data -->
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
