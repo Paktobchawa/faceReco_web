@@ -104,7 +104,7 @@ def detect():
                     modeType = 0
                     counter = 1
                     checkMatche = 1
-                return studentIDList[matchIndex]
+    
         if counter != 0 and checkMatche != 0:
             if counter == 1:
                 ref = db.reference(f'Students/{id}')
@@ -125,7 +125,7 @@ def detect():
                 if late == True:
                     studentInfo['rate attendance'] = str(int(studentInfo['rate attendance']) + 1)
                     ref.child('rate attendance').set(studentInfo['rate attendance'])
-
+        return studentIDList[matchIndex]
     except Exception as e:
         return f'Error: {str(e)}' 
     return "not in database"
