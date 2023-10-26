@@ -10,7 +10,7 @@ import numpy as np
 
 from datetime import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, Response
 
 #from flask_socketio import SocketIO
 
@@ -31,20 +31,17 @@ modeList = []
 for path in modePathList:
     modeList.append(cv2.imread(os.path.join(modePath, path)))
 
+def gen_camera():
+    cap = cv2.VideoCapture(0)  # open Camera (order of cam)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/sec1', methods=['POST'])
-def detect():
-    #render_template("sec1.html")
     # 0 (onTime), 1 (alraedy), 2 (notFound), 3 (mark), 4 (default), 5 (late)
     modeType = 4
-    counter = 0 # count fram for change mode
+    counter = 0 # count fram for change mode 
     id = -1
     checkMatche = 0
-
+ 
     # SETTING TIME #
     late = True
     alreadyCheck = False
@@ -62,12 +59,10 @@ def detect():
     encodeListandID = pickle.load(file)
     file.close()
 
+    matchIndex = -1
+
     encodeFaceList, studentIDList = encodeListandID
-    
-    cap = cv2.VideoCapture(0)  # open Camera (order of cam)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-    try:
+    while True:
         success, image = cap.read()
         imageResize = cv2.resize(image, (0, 0), None, 0.25, 0.25)
         imageResize = cv2.cvtColor(imageResize, cv2.COLOR_BGR2RGB)
@@ -75,6 +70,16 @@ def detect():
         faceCurrent = face_recognition.face_locations(imageResize)
         encodeNewface = face_recognition.face_encodings(imageResize, faceCurrent, num_jitters=10, model="cnn")
 
+        #frame
+        for top, right, bottom, left in faceCurrent:
+            cv2.rectangle(image, (left, top), (right, bottom), (0, 0, 255), 2)
+        ret, buffer = cv2.imencode('.jpg', image)
+        if not ret:
+            break
+        image = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n')
+        
         for encodeFace, faceLocation in zip(encodeNewface, faceCurrent):
             matches = face_recognition.compare_faces(encodeFaceList, encodeFace, tolerance=0.4)
             faceDistance = face_recognition.face_distance(encodeFaceList, encodeFace)
@@ -125,10 +130,15 @@ def detect():
                 if late == True:
                     studentInfo['rate attendance'] = str(int(studentInfo['rate attendance']) + 1)
                     ref.child('rate attendance').set(studentInfo['rate attendance'])
-        return studentIDList[matchIndex]
-    except Exception as e:
-        return f'Error: {str(e)}' 
-    return "not in database"
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/sec1', methods=['POST'])
+def sec1():
+   render_template("sec1.html")
+   return Response(gen_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/adjustdata', methods=['POST'])

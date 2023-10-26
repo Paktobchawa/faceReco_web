@@ -17,6 +17,10 @@ input[type="submit"]:hover {
     left: 90%;
 }
 
+#sec1Button {
+    top :50%;
+    left: 50%;
+}
 body {
     background-color: #ff842d;
     margin: 0;
