@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Firebase Data Table</title>
+    <title>Students Data Table</title>
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ff842d;
+    }
 
+    h1 {
+        position: relative;
+        color: #fff;
+        text-align:center;
+        border:2px black;
+        padding: 10px;
+        font-size: 40px;
+        text-shadow: 1px  0   0 #3a3a3a,
+                    -1px  0   0 #3a3a3a,
+                     0    1px 0 #3a3a3a,
+                     0   -1px 0 #3a3a3a,
+                     1px  1px 0 #3a3a3a,
+                    -1px -1px 0 #3a3a3a,
+                     1px -1px 0 #3a3a3a,
+                    -1px  1px 0 #3a3a3a,
+                     1px  1px 5px #3a3a3a;
+    }
+
+    table {
+        position: relative;
+        background-color:#ffffff;
+        left: 250px;
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-spacing: 10px;
+
+    }
+
+    th,tr {
+        height: 30px;
+    }
+    
+    th {
+        background-color: #d2ecff;
+    }
+    tr:nth-child(odd) {
+        background-color: #eaf6ff;
+    }
 </style>
 </head>
 <body>
-    <h1> Firebase Data </h1>
+    <h1> Students Data </h1>
     <table border="1">
         <tr>
             <th>ID</th>

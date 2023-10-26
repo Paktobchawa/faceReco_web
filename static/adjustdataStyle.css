@@ -9,8 +9,8 @@ input[type="submit"] {
 }
 
 #exportButton {
-    top: 150px;
-    left: 110px;
+    top: 170px;
+    left: 35%;
 }
 
 input[type="submit"]:hover {
@@ -64,7 +64,7 @@ input[type="button"] {
 }
 
 #uploadButton {
-    top: 150px;
+    top: 170px;
     left: 140px;
 }
 
@@ -79,15 +79,18 @@ input[type="button"]:hover {
 
 h1 {
     color:#ff6326;
-    position: absolute;
+    position: relative;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align:center;
     font-size: 45px;
     text-shadow: 2px 2px 1px rgba(106, 106, 106, 0.5);
 }
 
 h2 {
+    position:relative;
+    top: -10px;
+    text-align:center;
     color:#ff6326;
     text-shadow: 1px 1px 1px rgba(84, 84, 84, 0.5);
 }
+
