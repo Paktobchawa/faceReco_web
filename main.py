@@ -134,7 +134,7 @@ def gen_camera():
    
 
 
-@app.route('/', methods=['POST'])
+@app.route('/')
 def home():
     return render_template('homepage.html')
 
