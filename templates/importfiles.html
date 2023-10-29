@@ -27,6 +27,51 @@
     <html>
     <head>
         <title>Button Example</title>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+        <script src="https://cdn.jsdelivr.net/g/filesaver.js"></script> <!-- เพิ่มไลบรารี FileSaver.js -->
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyCBYTdBBcLX7POJumyNsf_ugEja-ZVKwl8",
+                authDomain: "facerecognition-41dc8.firebaseapp.com",
+                databaseURL: "https://facerecognition-41dc8-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "facerecognition-41dc8",
+                storageBucket: "facerecognition-41dc8.appspot.com",
+                messagingSenderId: "952650759936",
+                appId: "1:952650759936:web:fad10eab165c6b1e0f3de5",
+                measurementId: "G-8Q0TB19EV5"
+            };
+    
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+
+        <script>
+            function uploadFiles() {
+                const fileInput = document.getElementById('fileInput');
+                const files = fileInput.files;
+    
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const storage = firebase.storage();
+                    const storageRef = storage.ref('uploads/' + file.name);
+                    const uploadTask = storageRef.put(file);
+    
+                    uploadTask.then((snapshot) => {
+                        console.log('File uploaded:', snapshot.metadata.fullPath);
+                        storageRef.getDownloadURL().then(function (url) {
+                            const uploadedImage = document.getElementById('uploadedImage');
+                            uploadedImage.src = url;
+                        });
+                    }).catch((error) => {
+                        console.error('Error uploading file:', error);
+                    });
+                }
+            }
+    
+        </script>
+
         <style>
             
             /* Style for the button */
@@ -79,12 +124,27 @@
                 cursor: pointer; /* Add a pointer cursor to indicate interactivity */
             }
 
-            .UploadPhotoButton {
+            .container {
+                display: flex;
+                justify-content: space-between;
+                margin: 20px;
+                padding: 20px;
+                width: 350px;
+                height: 200px;
+      
+                border-radius: 5px;
+                position: absolute;
+                left: 759px; 
+                top: 368px; 
+            }
+
+            #UploadPhotoButton {
                 width: 317px; 
                 height: 60px; 
                 position: absolute;
-                left: 759px; 
-                top: 435px; 
+                left: 10%;
+                top: 20%;
+        
                 text-align: center;
                 background-color: #ffffff; /* Change this to your desired button background color */
                 color: black; /* Change this to your desired text color */
@@ -92,23 +152,28 @@
                 font-family: Inter;
                 font-weight: 500;
                 word-wrap: break-word;
-                padding: 10px 20px; /* Adjust the padding as needed */
+                padding: 0.5px 20px; /* Adjust the padding as needed */
                 border: none;
                 border-radius: 10px;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 cursor: pointer; /* Add a pointer cursor to indicate interactivity */
             }
-            
 
+            
+            
         </style>
     </head>
     <body>
-        <form method="POST" action="/">
-            <input type="submit" class="homepageButton" value="HOME PAGE">
-        </form>
+        <button class="homepageButton">HOME PAGE</button>
         <button class="ImportFilesButton">IMPORT FILES</button>
         <button class="DragfilesButton">DRAG FILES TO UPLOAD</button>
-        <button class="UploadPhotoButton">UPLOAD PHOTO</button>
+
+        <div class="container">
+            <form name="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="fileInput" multiple>
+                <input type="submit" value="UPLOAD PHOTO" onclick="uploadFiles()" id="UploadPhotoButton">
+            </form>
+        </div>
     </body>
     </html>
 

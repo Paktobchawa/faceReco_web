@@ -23,6 +23,7 @@ firebase_admin.initialize_app(cred, {
     })
 
 bucket = storage.bucket()
+global imageStudent
 imageStudent = []
 
 modePath = 'Interface/modes'
@@ -87,13 +88,8 @@ def gen_camera():
             matchIndex = np.argmin(faceDistance)
 
             if matches[matchIndex]:
-                y1, x2, y2, x1 = faceLocation
-                y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
-
-                # setting point for frame dectect
-                bbox = 45 + x1, 162 + y1, x2 - x1, y2 - y1
-
                 id = studentIDList[matchIndex]
+                imageStudent.append(id)
             
                 studentInfo = db.reference(f'Students/{id}').get()
                 if studentInfo['day'] != '0':
@@ -103,11 +99,9 @@ def gen_camera():
                     if (beforeDay.strftime("%d/%m/%Y") == today and 
                         (mr0900.strftime("%H:%M") <= lastChecking.strftime("%H:%M")  <= endClass1.strftime("%H:%M") 
                         or af1300.strftime("%H:%M") <= lastChecking.strftime("%H:%M") <= mid.strftime("%H:%M"))):
-                        modeType = 1
                         checkMatche = 0
                         counter = 1
                 if counter == 0:
-                    modeType = 0
                     counter = 1
                     checkMatche = 1
     
@@ -131,8 +125,6 @@ def gen_camera():
                 if late == True:
                     studentInfo['rate attendance'] = str(int(studentInfo['rate attendance']) + 1)
                     ref.child('rate attendance').set(studentInfo['rate attendance'])
-   
-
 
 @app.route('/')
 def home():
@@ -163,6 +155,6 @@ def importFile():
 @app.route('/camera', methods=['POST'])
 def camera():
     return render_template('camera.html')
-    
+
 if __name__ == "__main__":
     app.run(debug=True)
