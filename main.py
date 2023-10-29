@@ -155,10 +155,14 @@ def displayData():
         return render_template('displayData.html', data=data)
     except Exception as e:
         return f'Error: {str(e)}' 
-    
+
 @app.route('/importFile', methods=['POST'])
 def importFile():
-    return render_template('import.html')
+    return render_template('importfiles.html')
 
+@app.route('/camera', methods=['POST'])
+def camera():
+    return render_template('camera.html')
+    
 if __name__ == "__main__":
     app.run(debug=True)

@@ -166,16 +166,21 @@
             </style>
         </head>
         <body>
-            <button class="studentButton">STUDENT ATTENDANCE CHECK</button>
             <form method="POST" action="/display">
                 <input type="submit" class="exportButton" value="EXPORT FILES">
+            </form>
 
-            <!-- <button class="importButton">IMPORT FILES</button> -->
-            <button class="homeButton">HOME PAGE</button>
-
-            <!-- Create a button-like link to the next page -->
             <form method="POST" action="/importFile">
                 <input type="submit" class="importButton" value="IMPORT FILES">
+            </form>
+
+            <form method="POST" action="/camera">
+                <input type="submit" class="studentButton" value="STUDENT ATTENDANCE CHECK">
+            </form>
+            
+            <form method="POST" action="/">
+                <input type="submit" class="homeButton" value="HOME PAGE">
+            </form>
 
         </body>
         </html>
