@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .text-frame{
+            width: 100%; 
+            height: 100%; 
+            width: 367px; 
+            height: 70px; 
+            background: #FFD4B5; 
+            left: 30px; 
+            top: 300px; 
+            position: absolute; 
+            border-radius: 10px
+            
+        }
+        
+        .timeframe{
+            width: 100%; 
+            height: 100%; 
+            width: 168px; 
+            height: 51px; 
+            background: #0ACB1D; 
+            right:32px; 
+            top: 470px; 
+            position: absolute; 
+            border-radius: 10px
+            
+        }
+
+        .timeText {
+            color: #070707; /* Text color */
+            font-size: 16px; /* Font size */
+            margin-top: 15px;
+            margin-left: 0px;
+            position: relative;
+            text-align: center;
+        }
+
+        .dayframe{
+            width: 100%; 
+            height: 100%; 
+            width: 367px; 
+            height: 51px; 
+            background: #EFEFEF; 
+            left: 30px; 
+            top: 470px; 
+            position: absolute; 
+            border-radius: 10px
+            
+        }
+        /* Style for the text inside the box */
+        .dayText {
+            color: #070707; /* Text color */
+            font-size: 16px; /* Font size */
+            margin-top: 15px;
+            margin-left: 30px;
+            position: relative;
+            text-align: left;
+        }
+
+        .info-box {
+            width: 100%; 
+            height: 100%;
+            width: 174px;
+            height: 174px; /* Adjust the width as needed */
+            padding: 20px;
+            background: #D9D9D9; /* Background color of the box */
+            border: 1px solid #ccc; /* Border around the box */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle 3D effect */
+            margin: 50px; /* Margin to create space around the box */
+            position: relative; /* Set the position to relative for absolute positioning */
+            top: 3px; /* Adjust the top value as needed to change the vertical position */
+            left: 57px;
+            
+        }
+
+        /* Style for the text inside the box */
+        .unitext {
+            color: #070707; /* Text color */
+            font-size: 16px; /* Font size */
+            margin-top: 115px;
+            margin-left: 30px;
+            position: relative;
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        .textinframe {
+            color: #070707; /* Text color */
+            font-size: 16px; /* Font size */
+            margin-top: 15px;
+            margin-left: 30px;
+            text-align: left;
+        }
+
+        /* Style for the text inside the box */
+        .info-text {
+            color: #070707; /* Text color */
+            font-size: 16px; /* Font size */
+        }
+
+        .headline {
+        padding: 10px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: #936043;
+        width: 380px;
+        height: 40px;
+        flex-shrink: 0;
+        }
+        .frameName {
+        border: 2px solid red;
+        padding: 20px;
+        background: rgba(255, 100, 13, 0.50);
+        width: 552px;
+        height: 873px;
+        float: right ;
+        }
+        
+        .frameAttence {
+        width: 742px;
+        height: 554px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        border: 8px solid #FF640D;
+        background: #FFF;
+        float: right;
+        top: 165px;
+        left: 200px;
+        }
+    </style>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Attendance</title>
+<script>
+    var siteWidth = 1280;
+        var scale = screen.width /siteWidth;
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
+</script>
+</head>
+
+<body>
+    <body style="background-color: #FFD4B5;"></body>
+
+    <div style="width: 767px; height: 72px; left: -157px; top: 56px; position: absolute; background: #FF640D; border-radius: 30px"></div>
+
+    <div style="left: 37px; top: 80px; position: absolute; color: white; font-size: 22px; font-family: JejuGothic; font-weight: 400; word-wrap: break-word">King Mongkut's Institute of Technology Ladkrabang</div>
+
+    <div style="width: 552px; height: 873px; left: 1360px; top: 5px; position: absolute; background: rgba(255, 99.96, 12.75, 0.50)"> </div>
+
+    <div style="width: 742px; height: 554px; left: 300px; top: 165px; position: absolute; border-radius: 20px; border: 8px #FF640D solid">
+        <div id="video-container">
+            <img src="{{ url_for('video_feed') }}" width="742" height="554" >
+        </div>
+    </div>  <!-- กล้อง -->
+
+    <div style="width: 1910px; height: 75px; left: 0px; top: 880px; position: absolute; background: #757575"></div>
+    
+    <div style="width: 430px; height: 580px; left: 1425px; top: 152px; position: absolute; background: white; border-radius: 20px; border: 5px #0ACB1D solid">
+        <div class="info-box">
+            <p class="info-text">This is the information you want to display in the box. You can add any content here, such as text, images, or links.<a href="https://example.com"></a></p>
+        </div>
+
+        <div class="text-frame">
+            <p class="textinframe">ชื่อ-นามสกุล:<a href="https://example.com"></a></br>รหัสนักศึกษา :</p>
+           
+        </div>
+            
+        <div class="unitext">
+            <p class="unitext">คณะ :<a href="https://example.com"></a></br> สาขา :</br> ชั้นปีที่ :</p>
+        </div>
+
+        <div class="dayframe">
+            <p class="dayText">วันที่<a href="https://example.com"></a></p>
+        </div>
+
+        <div class="timeframe">
+            <p class="timeText">เวลา<a href="https://example.com"></a></p>
+        </div>
+        
+            
+   
+</div>
+    
+</body>
+</html>

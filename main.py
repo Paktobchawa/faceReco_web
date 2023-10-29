@@ -31,6 +31,7 @@ modeList = []
 for path in modePathList:
     modeList.append(cv2.imread(os.path.join(modePath, path)))
 
+
 def gen_camera():
     cap = cv2.VideoCapture(0)  # open Camera (order of cam)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -72,7 +73,7 @@ def gen_camera():
 
         #frame
         for top, right, bottom, left in faceCurrent:
-            cv2.rectangle(image, (left, top), (right, bottom), (0, 0, 255), 2)
+            cv2.rectangle(image, (left * 4, top * 4), (right * 4, bottom * 4), (0, 0, 255), 2)
         ret, buffer = cv2.imencode('.jpg', image)
         if not ret:
             break
@@ -130,16 +131,16 @@ def gen_camera():
                 if late == True:
                     studentInfo['rate attendance'] = str(int(studentInfo['rate attendance']) + 1)
                     ref.child('rate attendance').set(studentInfo['rate attendance'])
+   
 
-@app.route('/')
+
+@app.route('/', methods=['POST'])
 def home():
-    return render_template('home.html')
+    return render_template('homepage.html')
 
-@app.route('/sec1', methods=['POST'])
-def sec1():
-   render_template("sec1.html")
-   return Response(gen_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/adjustdata', methods=['POST'])
 def adjustData():
@@ -155,6 +156,9 @@ def displayData():
     except Exception as e:
         return f'Error: {str(e)}' 
     
-    
+@app.route('/importFile', methods=['POST'])
+def importFile():
+    return render_template('import.html')
+
 if __name__ == "__main__":
     app.run(debug=True)

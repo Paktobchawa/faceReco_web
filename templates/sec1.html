@@ -4,7 +4,15 @@
 
 </head>
 <body>
-    <img src="{{ url_for('sec1') }}" id="camera">
-    <img src=""Interface\Modes\already.png" alt="already" id="alreadyUI">
+    <img src="{{ url_for('sec1') }}" id="camera" style="width: 100%; height: auto;">
+        <!-- Add your CSS and styling here -->
+    <script>
+        const video = document.getElementById("camera");          
+        setInterval(function() {
+            video.src = "{{ url_for('sec1') }}?t=" + new Date().getTime(); // Update the source to the camera feed
+        }, 100); // Update every 100ms (adjust this as needed)
+    </script>
 </body>
 </html>
+
+

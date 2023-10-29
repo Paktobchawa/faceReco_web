@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<div style=" width: 100%;
+            max-width: 1440px; 
+            background-size: cover; /* Cover the entire viewport */
+            background-repeat: no-repeat; /* Prevent repeating */
+            background-attachment: fixed;
+            height: 1024px; position: relative; background: #FFD4B5">
+    <div style=" width: 100%;
+        max-width: 1440px; 
+        height: 73px; 
+        left: 0px; 
+        top: 0px; 
+        position: absolute; 
+        background: #FF640D"></div>
+    <div style="width: 628px; 
+        left: 45px; top: 15px; 
+        position: absolute; 
+        text-align: left; 
+        color: white; 
+        font-size: 32px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">STUDENT ATTENDANCE CHECK</div>
+    <div style="width: 225px;
+        height: 951px;
+        left: 0px; 
+        top: 73px; 
+        position: absolute; 
+        background: #FF9C61"></div>
+    <!-- <div style="left: 45px; 
+        top: 176px; 
+        position: absolute; 
+        text-align: center; 
+        color: white; 
+        font-size: 24px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">Import Files</div> -->
+    <!-- <div style="left: 45px; 
+        top: 107px; position: 
+        absolute; text-align: 
+        center; color: white; 
+        font-size: 24px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">Home Page</div> -->
+    <div style="width: 183px; 
+        height: 0px; 
+        left: 21px; 
+        top: 175px; 
+        position: absolute; 
+        border: 1px white solid"></div>
+    <div style="left: 298px; 
+        top: 125px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 20px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">SUBJECT</div>
+    <div style="left: 298px; 
+        top: 265px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 20px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">SECTION</div>
+    <!-- <div style="width: 444px; 
+        height: 71px; 
+        left: 298px; 
+        top: 476px; 
+        position: absolute; 
+        background: white; 
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+        border-radius: 10px"></div> -->
+    <!-- <div style="width: 444px; 
+        height: 71px; 
+        left: 298px; 
+        top: 695px; 
+        position: absolute; 
+        background: white; 
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+        border-radius: 10px"></div> -->
+        
+        <html>
+        <head>
+            <title>Button Example</title>
+            <style>
+                /* Style for the button */
+                .studentButton {
+                    width: 317px;
+                    height: 60px; 
+                    position: absolute;
+                    left: 298px; 
+                    top: 435px; 
+                    text-align: center;
+                    background-color: #ffffff; /* Change this to your desired button background color */
+                    color: black; /* Change this to your desired text color */
+                    font-size: 16px;
+                    font-family: Inter;
+                    font-weight: 500;
+                    word-wrap: break-word;
+                    padding: 10px 20px; /* Adjust the padding as needed */
+                    border: none;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+                }
+
+                .exportButton {
+                    width: 317px;
+                    height: 60px; 
+                    position: absolute;
+                    left: 298px; 
+                    top: 610px; 
+                    text-align: center;
+                    background-color: #ffffff; /* Change this to your desired button background color */
+                    color: black; /* Change this to your desired text color */
+                    font-size: 16px;
+                    font-family: Inter;
+                    font-weight: 500;
+                    word-wrap: break-word;
+                    padding: 10px 20px; /* Adjust the padding as needed */
+                    border: none;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+                }
+
+
+                .homeButton {
+                    left: 50px; 
+                    top: 125px; 
+                    position: absolute; 
+                    text-align: center; 
+                    border: none;
+                    background: none;
+                    color: white; /* Change this to your desired text color */
+                    font-size: 20px; 
+                    font-family: Inter; 
+                    font-weight: 500; 
+                    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+                    text-decoration: underline; /* Add underline to text (optional) */
+                }
+                
+
+                .importButton {
+                    left: 50px; 
+                    top: 195px; 
+                    position: absolute; 
+                    text-align: center; 
+                    border: none;
+                    background: none;
+                    color: white; /* Change this to your desired text color */
+                    font-size: 20px; 
+                    font-family: Inter; 
+                    font-weight: 500; 
+                    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+                    /*text-decoration: underline; /* Add underline to text (optional) */
+                }
+                
+            </style>
+        </head>
+        <body>
+            <button class="studentButton">STUDENT ATTENDANCE CHECK</button>
+            <form method="POST" action="/display">
+                <input type="submit" class="exportButton" value="EXPORT FILES">
+
+            <!-- <button class="importButton">IMPORT FILES</button> -->
+            <button class="homeButton">HOME PAGE</button>
+
+            <!-- Create a button-like link to the next page -->
+            <form method="POST" action="/importFile">
+                <input type="submit" class="importButton" value="IMPORT FILES">
+
+        </body>
+        </html>
+
+        
+        
+    <!-- <div style="left: 451px; 
+        top: 716px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 24px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">Export Files</div> -->
+    <div style="width: 317px;
+        height: 60px;
+        left: 298px; 
+        top: 178px; 
+        position: absolute; 
+        background: white; border-radius: 10px"></div>
+    <div style="width: 317px;
+        height: 60px; 
+        left: 298px; 
+        top: 320px; 
+        position: absolute; 
+        background: white; 
+        border-radius: 10px"></div>
+    <div style="left: 332px; 
+        top: 200px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 16px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">ARTIFICIAL INTELLIGENCE</div>
+    <div style="left: 332px; 
+        top: 340px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 16px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">SECTION 1</div>
+    <div style="left: 298px; 
+        top: 550px; 
+        position: absolute; 
+        text-align: center; 
+        color: black; 
+        font-size: 20px; 
+        font-family: Inter; 
+        font-weight: 500; 
+        word-wrap: break-word">EXPORT STUDENT ATTENDANCE CHECKED DATA</div>
+  </div>
